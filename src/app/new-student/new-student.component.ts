@@ -71,7 +71,7 @@ export class NewStudentComponent implements OnInit {
   }
 
   getDetails(id: string) {
-    this.stdDetails = this.studentService.getStudentDetails(id);
+    // this.stdDetails = this.studentService.getStudentDetails(id);
   }
   
   addStudent() {

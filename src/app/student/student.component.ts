@@ -5,38 +5,38 @@ import { StudentService } from '../services/student.service';
 import { Student } from './model';
 import { ActivatedRoute, Router } from '@angular/router';
 
-const STUDENT = [
-  {
-      name: 'manthan',
-      age: 32,
-      email: 'test@test.com',
-      number: '12457654'
-  },
-  {
-      name: 'prem',
-      age: 12,
-      email: 'test@test.com',
-      number: '12457654'
-  },
-  {
-      name: 'sachin',
-      age: 23,
-      email: 'test@test.com',
-      number: '12457654'
-  },
-  {
-      name: 'rahul',
-      age: 38,
-      email: 'test@test.com',
-      number: '12457654'
-  },
-  {
-      name: 'shubham',
-      age: 18,
-      email: 'test@test.com',
-      number: '12457654'
-  }
-];
+// const STUDENT = [
+//   {
+//       name: 'manthan',
+//       age: 32,
+//       email: 'test@test.com',
+//       number: '12457654'
+//   },
+//   {
+//       name: 'prem',
+//       age: 12,
+//       email: 'test@test.com',
+//       number: '12457654'
+//   },
+//   {
+//       name: 'sachin',
+//       age: 23,
+//       email: 'test@test.com',
+//       number: '12457654'
+//   },
+//   {
+//       name: 'rahul',
+//       age: 38,
+//       email: 'test@test.com',
+//       number: '12457654'
+//   },
+//   {
+//       name: 'shubham',
+//       age: 18,
+//       email: 'test@test.com',
+//       number: '12457654'
+//   }
+// ];
 @Component({
   selector: 'app-student',
   standalone: true,
@@ -58,7 +58,9 @@ export class StudentComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.studentList=this.studentService.students;
+    this.studentService.getStudents().subscribe((res)=>{
+      this.studentList=res
+    });
   }
   initStudent()
   {

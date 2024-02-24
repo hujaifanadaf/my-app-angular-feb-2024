@@ -27,7 +27,9 @@ export class StudentDetailsComponent {
 
   initStudentDetails(id:string)
   {
-      this.student=this.studentService.getStudentDetails(id);
+      this.studentService.getStudentDetails(id).subscribe((res:any)=>{
+        this.student=res;
+      });
       console.log('data',this.student);
   }
 

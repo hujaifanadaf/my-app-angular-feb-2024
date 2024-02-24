@@ -1,56 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../student/model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-const STUDENT: Student[] = [
-  {
-    img: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-    id: 's1',
-    name: 's123',
-    age: 32,
-    email: 'test@test.com',
-    number: '12457654',
-  },
-  {
-    img: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-    id: 's2',
-    name: 's234',
-    age: 12,
-    email: 'test@test.com',
-    number: '12457654',
-  },
-  {
-    img: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-    id: 's3',
-    name: 's345',
-    age: 23,
-    email: 'test@test.com',
-    number: '12457654',
-  },
-  {
-    img: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-    id: 's4',
-    name: 's456',
-    age: 38,
-    email: 'test@test.com',
-    number: '12457654',
-  },
-  {
-    img: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-    id: 's5',
-    name: 's45654',
-    age: 18,
-    email: 'test@test.com',
-    number: '12457654',
-  },
-];
+const baseUrl='http://localhost:5000/api';
 @Injectable({
   providedIn: 'root',
 })
 export class StudentService {
   public studentList: Student[];
 
-  constructor() {
-    this.studentList = STUDENT;
+  constructor(private http:HttpClient) {
+    this.studentList = [];
   }
 
   get students(): Student[] {
@@ -61,8 +22,13 @@ export class StudentService {
     this.studentList = value;
   }
 
-  getStudentDetails(id: string): Student | undefined {
-    return this.studentList.find((std) => std.id === id);
+  getStudents():Observable<any>{
+    console.log(`${baseUrl}/students`);
+    return this.http.get(`${baseUrl}/students`)
+  }
+
+  getStudentDetails(id: string):Observable <any> {
+    return this.http.get(`${baseUrl}/students/${id}`);
   }
 
   saveStudentDetails(student: Student) {
