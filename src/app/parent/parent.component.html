@@ -1,0 +1,5 @@
+<p>parent</p>
+<div class="box">
+    <app-child [mydata]="name" (childEvent)="msg=$event"></app-child>
+</div>
+<p>{{msg}}</p>
