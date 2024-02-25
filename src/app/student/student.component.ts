@@ -78,9 +78,11 @@ export class StudentComponent implements OnInit{
     this.ShowTable=!this.ShowTable;
   }
 
-  deleteStudent(index:number)
+  deleteStudent(id:string)
   {
-    this.studentList.splice(index,1);
+    this.studentService.deleteStudent(id).subscribe((res)=>{
+      this.studentList=res;
+    })
   }
 
   // SearchByName()

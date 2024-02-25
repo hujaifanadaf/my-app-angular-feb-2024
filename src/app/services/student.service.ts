@@ -31,14 +31,15 @@ export class StudentService {
     return this.http.get(`${baseUrl}/students/${id}`);
   }
 
-  saveStudentDetails(student: Student) {
-    this.studentList.unshift(student);
+  saveStudentDetails(student: Student):Observable <any> {
+    return this.http.post(`${baseUrl}/students`,student);
   }
 
   updateStudent(id: string, updatedStd: Student) {
-    const index = this.studentList.findIndex((std) => std.id === id);
-    if(index > -1) {
-      this.studentList[index] = updatedStd;
+    return this.http.patch(`${baseUrl}/students/${id}`,updatedStd);
     }
+
+  deleteStudent(id:string):Observable <any> {
+    return this.http.delete(`${baseUrl}/students/${id}`);
   }
-}
+  }
